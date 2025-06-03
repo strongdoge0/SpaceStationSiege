@@ -27,7 +27,7 @@ public class Unit : MonoBehaviour
 
     void Start()
     {
-        
+        _health = Mathf.Clamp(_health, 0, maxHealth);
     }
 
 

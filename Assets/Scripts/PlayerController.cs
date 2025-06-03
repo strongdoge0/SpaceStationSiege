@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 _rotation;
     public Vector2 _currentRotation;
+
+    public AudioSource audioSource;
     
     void Start()
     {
@@ -51,5 +53,7 @@ public class PlayerController : MonoBehaviour
 
         transform.eulerAngles = new Vector3(_currentRotation.y, _currentRotation.x, 0);
         transform.position += transform.forward * _currentSpeed * Time.deltaTime;
+
+        audioSource.pitch = Mathf.Lerp(0.7f, 1.0f, _currentSpeed / maxMovementSpeed);
     }
 }
