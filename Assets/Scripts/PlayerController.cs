@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
     public float accelerationSpeed = 5;
     private float _currentSpeed = 5;
 
+    public float speed { get { return _currentSpeed; } }
+
     public float mouseSensitivity = 30;
     public float angularSpeed = 10;
 
-    public Vector2 _rotation;
-    public Vector2 _currentRotation;
+    private Vector2 _rotation;
+    private Vector2 _currentRotation;
 
     public AudioSource audioSource;
     
@@ -54,6 +56,6 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = new Vector3(_currentRotation.y, _currentRotation.x, 0);
         transform.position += transform.forward * _currentSpeed * Time.deltaTime;
 
-        audioSource.pitch = Mathf.Lerp(0.7f, 1.0f, _currentSpeed / maxMovementSpeed);
+        audioSource.pitch = Mathf.Lerp(0.7f, 1.5f, _currentSpeed / maxMovementSpeed);
     }
 }

@@ -17,9 +17,7 @@ public class UIController : MonoBehaviour
     public TMP_Text targetNameLabel;
     public Image targetFillHealthbar;
 
-    public float a = 1.0f;
-    public float b = 0.5f;
-    public float c = 15.0f;
+    public TMP_Text speedValueLabel;
 
     void Start()
     {
@@ -39,10 +37,7 @@ public class UIController : MonoBehaviour
             {
                 targetImage.gameObject.SetActive(true);
             }
-            //float distance = Vector3.Distance(transform.position, target.transform.position);
-            //distance = Mathf.Clamp(distance, 0.1f, 1f);
-            //distance = Mathf.Lerp(a, b, distance / c);
-            //targetImage.transform.localScale = new Vector3(distance, distance, 1);
+
             targetStatusBar.gameObject.SetActive(true);
             targetNameLabel.text = target.name;
             targetFillHealthbar.fillAmount = (float)target.curHealth / (float)target.maxHealth;
@@ -109,6 +104,8 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-
+        if (gameController.playerController!=null) {
+            speedValueLabel.text = (int)(gameController.playerController.speed * 33.3f) + " км/ч";
+        }
     }
 }
