@@ -171,8 +171,6 @@ MonoBehaviour:
   accelerationSpeed: 5
   mouseSensitivity: 30
   angularSpeed: 10
-  _rotation: {x: 0, y: 0}
-  _currentRotation: {x: 0, y: 0}
   audioSource: {fileID: 8932746877345732793}
 --- !u!82 &8932746877345732793
 AudioSource:
@@ -187,7 +185,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 537a28e3497cdaa4ea73d981c13e3a5c, type: 3}
   m_Resource: {fileID: 8300000, guid: 537a28e3497cdaa4ea73d981c13e3a5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 3
   Loop: 1
   Mute: 0
