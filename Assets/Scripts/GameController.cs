@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
         stationUnit = GameObject.Instantiate(stationPrefab, new Vector3(), Quaternion.identity, scene).GetComponent<Unit>();
         stationUnit.curHealth = stationUnit.maxHealth;
         playerController = GameObject.Instantiate(playerPrefab, playerSpawnPoint, Quaternion.identity, scene).GetComponent<PlayerController>();
-        cameraController.target = playerController.transform;
+        cameraController.InitializeTarget(playerController.transform);
 
         int meteorCount = 100;
         if (difficulty == 1)

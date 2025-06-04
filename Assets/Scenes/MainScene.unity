@@ -945,7 +945,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   scene: {fileID: 175692848}
   stationPrefab: {fileID: 2180834972752349539, guid: 721181bf1e79bd849962cc2d58116538, type: 3}
-  playerPrefab: {fileID: 8472073178928391928, guid: cb4c306618326fb468adeaa7d22b1bd4, type: 3}
+  playerPrefab: {fileID: 5667441016203417902, guid: 1b6eb1f1149929b4a8c7ae5cf9e87d73, type: 3}
   meteorPrefab: {fileID: 5544365690297792081, guid: c5b48daa33e26844b9ad37cc38a50c5e, type: 3}
   enemyAlphaPrefab: {fileID: 8570023413238145515, guid: 7946a52af38c65f4686cde27a431308d, type: 3}
   enemyBetaPrefab: {fileID: 3087661804871579538, guid: b0bbb9587fab2b74c85c48f1d32df4e9, type: 3}
@@ -1725,13 +1725,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.008090331, y: -0.9775919, z: 0.1202831, w: -0.17257082}
+  m_LocalRotation: {x: -0.006075858, y: -0.8650258, z: 0.18322507, w: -0.46703535}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 13.767, y: -200.205, z: -1.516}
+  m_LocalEulerAnglesHint: {x: 18.824, y: -238.354, z: -9.771}
 --- !u!1 &733833570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2560,7 +2560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 2.2, z: -6}
+  offset: {x: 0, y: 2.2, z: -8}
   uIController: {fileID: 234272182}
   normalFOV: 75
   zoomedFOV: 35
@@ -3990,7 +3990,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ede9ea1f77822f4f91b1354e32e9836, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71c76c36dcb9bda49bee996277d6d187, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4561,7 +4561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ede9ea1f77822f4f91b1354e32e9836, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1be55630717a1d3499cedf55d9fca5b5, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

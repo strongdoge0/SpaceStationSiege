@@ -18,7 +18,15 @@ public class PlayerController : MonoBehaviour
     private Vector2 _currentRotation;
 
     public AudioSource audioSource;
-    
+
+    public ParticleSystem hyperdrive;
+
+    public ParticleSystem mainFlamethrower;
+    //public ParticleSystem bottomLeftFlamethrower;
+    //public ParticleSystem bottomRightFlamethrower;
+    public ParticleSystem topLeftFlamethrower;
+    public ParticleSystem topRightFlamethrower;
+
     void Start()
     {
 
@@ -30,14 +38,26 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             _currentSpeed = Mathf.Lerp(_currentSpeed, maxMovementSpeed, accelerationSpeed * Time.deltaTime);
+            hyperdrive.Play(true);
+            topLeftFlamethrower.Play();
+            topRightFlamethrower.Play();
+            mainFlamethrower.Play();
         }
         else if (Input.GetKey(KeyCode.S))
         {
             _currentSpeed = Mathf.Lerp(_currentSpeed, minMovementSpeed, accelerationSpeed * Time.deltaTime);
+            hyperdrive.Stop(true);
+            topLeftFlamethrower.Stop();
+            topRightFlamethrower.Stop();
+            mainFlamethrower.Stop();
         }
         else
         {
             _currentSpeed = Mathf.Lerp(_currentSpeed, movementSpeed, accelerationSpeed * Time.deltaTime);
+            hyperdrive.Stop(true);
+            topLeftFlamethrower.Stop();
+            topRightFlamethrower.Stop();
+            mainFlamethrower.Play();
         }
 
         _rotation.x += Input.mousePositionDelta.x * mouseSensitivity * Time.deltaTime;

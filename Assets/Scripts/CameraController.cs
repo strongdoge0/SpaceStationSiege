@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform target;
+    private Transform _target;
     public Vector3 offset = new Vector3(0, 2.2f, -6);
     public UIController uIController;
     private Unit _targetInCrosshair = null;
 
+    public float cameraMovementSpeed = 30;
 
     public float normalFOV = 75;
     public float zoomedFOV = 35;
@@ -20,12 +21,20 @@ public class CameraController : MonoBehaviour
     }
 
 
+    public void InitializeTarget(Transform target)
+    {
+        _target = target;
+        transform.position = target.position + target.forward * offset.z + target.up * offset.y;
+    }
+
     void Update()
     {
-        if (target != null)
+        if (_target != null)
         {
-            transform.position = target.position + target.forward * offset.z + target.up * offset.y;
-            transform.forward = target.forward;
+            Vector3 targetPosition = _target.position + _target.forward * offset.z + _target.up * offset.y;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, cameraMovementSpeed * Time.deltaTime);
+            //transform.position = target.position + target.forward * offset.z + target.up * offset.y;
+            transform.forward = _target.forward;
 
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
