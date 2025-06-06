@@ -14674,7 +14674,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 25
-      minScalar: 36
+      minScalar: 48
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14727,7 +14727,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6367924, g: 0.8437363, b: 1, a: 1}
+      maxColor: {r: 0.6367924, g: 0.8437363, b: 1, a: 0.46666667}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -29173,7 +29173,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 25
-      minScalar: 36
+      minScalar: 48
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -29226,7 +29226,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.63529414, g: 0.77241266, b: 1, a: 1}
+      maxColor: {r: 0.63529414, g: 0.77241266, b: 1, a: 0.5058824}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -68063,7 +68063,7 @@ MonoBehaviour:
   maxMovementSpeed: 15
   minMovementSpeed: 5
   movementSpeed: 10
-  accelerationSpeed: 5
+  accelerationSpeed: 1
   mouseSensitivity: 30
   angularSpeed: 10
   audioSource: {fileID: 2702398112335834881}
@@ -73279,7 +73279,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 25
-      minScalar: 36
+      minScalar: 48
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -73332,7 +73332,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0, g: 0, b: 0, a: 1}
+      maxColor: {r: 0, g: 0, b: 0, a: 0.5686275}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

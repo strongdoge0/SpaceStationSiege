@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private Transform _target;
-    public Vector3 offset = new Vector3(0, 2.2f, -6);
+    private PlayerController _target;
+    public Vector3 offset = new Vector3(0, 2.2f, 6);
     public UIController uIController;
     private Unit _targetInCrosshair = null;
 
@@ -21,20 +21,20 @@ public class CameraController : MonoBehaviour
     }
 
 
-    public void InitializeTarget(Transform target)
+    public void InitializeTarget(PlayerController target)
     {
         _target = target;
-        transform.position = target.position + target.forward * offset.z + target.up * offset.y;
+        transform.position = target.transform.position - target.transform.forward * (offset.z + target.speed/3) + target.transform.up * offset.y;
     }
 
     void Update()
     {
         if (_target != null)
         {
-            Vector3 targetPosition = _target.position + _target.forward * offset.z + _target.up * offset.y;
+            Vector3 targetPosition = _target.transform.position - _target.transform.forward * (offset.z + _target.speed/3) + _target.transform.up * offset.y;
             transform.position = Vector3.Lerp(transform.position, targetPosition, cameraMovementSpeed * Time.deltaTime);
             //transform.position = target.position + target.forward * offset.z + target.up * offset.y;
-            transform.forward = _target.forward;
+            transform.forward = _target.transform.forward;
 
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;

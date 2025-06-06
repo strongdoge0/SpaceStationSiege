@@ -38,26 +38,54 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             _currentSpeed = Mathf.Lerp(_currentSpeed, maxMovementSpeed, accelerationSpeed * Time.deltaTime);
-            hyperdrive.Play(true);
+            /*hyperdrive.Play(true);
             topLeftFlamethrower.Play();
             topRightFlamethrower.Play();
-            mainFlamethrower.Play();
+            mainFlamethrower.Play();*/
         }
         else if (Input.GetKey(KeyCode.S))
         {
             _currentSpeed = Mathf.Lerp(_currentSpeed, minMovementSpeed, accelerationSpeed * Time.deltaTime);
-            hyperdrive.Stop(true);
+            /*hyperdrive.Stop(true);
             topLeftFlamethrower.Stop();
             topRightFlamethrower.Stop();
-            mainFlamethrower.Stop();
+            mainFlamethrower.Stop();*/
         }
         else
         {
             _currentSpeed = Mathf.Lerp(_currentSpeed, movementSpeed, accelerationSpeed * Time.deltaTime);
-            hyperdrive.Stop(true);
+            /*hyperdrive.Stop(true);
+            topLeftFlamethrower.Stop();
+            topRightFlamethrower.Stop();
+            mainFlamethrower.Play();*/
+        }
+
+        if (_currentSpeed < movementSpeed - 3)
+        {
+            topLeftFlamethrower.Stop();
+            topRightFlamethrower.Stop();
+            mainFlamethrower.Stop();
+        }
+        else if (_currentSpeed < maxMovementSpeed - 3)
+        {
             topLeftFlamethrower.Stop();
             topRightFlamethrower.Stop();
             mainFlamethrower.Play();
+        }
+        else 
+        {
+            topLeftFlamethrower.Play();
+            topRightFlamethrower.Play();
+            mainFlamethrower.Play();
+        }
+
+        if (_currentSpeed <= maxMovementSpeed - 3)
+        {
+            hyperdrive.Stop(true);
+        }
+        else
+        {
+            hyperdrive.Play(true);
         }
 
         _rotation.x += Input.mousePositionDelta.x * mouseSensitivity * Time.deltaTime;

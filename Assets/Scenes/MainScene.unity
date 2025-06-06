@@ -2559,9 +2559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892b9c7e27f199e47bdda0eb99bc0ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  offset: {x: 0, y: 2.2, z: -8}
+  offset: {x: 0, y: 2.2, z: 4}
   uIController: {fileID: 234272182}
+  cameraMovementSpeed: 30
   normalFOV: 75
   zoomedFOV: 35
   zoomSpeed: 5
