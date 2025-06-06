@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour
     {
         if (_target != null)
         {
-            Vector3 targetPosition = _target.transform.position - _target.transform.forward * (offset.z + _target.speed/3) + _target.transform.up * offset.y;
+            Vector3 targetPosition = _target.transform.position - _target.transform.forward * (offset.z + _target.speed / 3) + _target.transform.up * offset.y;
             transform.position = Vector3.Lerp(transform.position, targetPosition, cameraMovementSpeed * Time.deltaTime);
             //transform.position = target.position + target.forward * offset.z + target.up * offset.y;
             transform.forward = _target.transform.forward;
@@ -56,6 +56,8 @@ public class CameraController : MonoBehaviour
                 _currentFOV = Mathf.Lerp(_currentFOV, normalFOV, Time.deltaTime * zoomSpeed);
             }
             Camera.main.fieldOfView = _currentFOV;
+
+            uIController.DrawPlayerStatusBar(_target.GetComponent<Unit>());
         }
         else
         {

@@ -16,8 +16,15 @@ public class UIController : MonoBehaviour
     public RectTransform targetStatusBar;
     public TMP_Text targetNameLabel;
     public Image targetFillHealthbar;
+    public RectTransform distanceLabel;
+    public TMP_Text distanceValueLabel;
+
 
     public TMP_Text speedValueLabel;
+
+
+
+    public Image playerFillHealthbar;
 
     void Start()
     {
@@ -41,11 +48,26 @@ public class UIController : MonoBehaviour
             targetStatusBar.gameObject.SetActive(true);
             targetNameLabel.text = target.name;
             targetFillHealthbar.fillAmount = (float)target.curHealth / (float)target.maxHealth;
+
+            if (gameController.playerController != null)
+            {
+                distanceLabel.gameObject.SetActive(true);
+                distanceValueLabel.text = (int)(Vector3.Distance(target.transform.position, gameController.playerController.transform.position) * 6.789f) + " м";
+            }
         }
         else
         {
+            distanceLabel.gameObject.SetActive(false);
             targetStatusBar.gameObject.SetActive(false);
             targetImage.gameObject.SetActive(false);
+        }
+    }
+
+    public void DrawPlayerStatusBar(Unit target)
+    {
+        if (target != null)
+        {
+            playerFillHealthbar.fillAmount = (float)target.curHealth / (float)target.maxHealth;
         }
     }
 
@@ -104,7 +126,8 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (gameController.playerController!=null) {
+        if (gameController.playerController != null)
+        {
             speedValueLabel.text = (int)(gameController.playerController.speed * 33.3f) + " км/ч";
         }
     }

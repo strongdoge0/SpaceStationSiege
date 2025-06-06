@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -39,7 +40,131 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void StartGame(int difficulty = 0)
+    public void GenerateScene(int minSize, int maxSize, int meteorCount, int omegaCount, int betaCount, int alphaCount)
+    {
+        List<Transform> units = new List<Transform>();
+
+        while (omegaCount > 0)
+        {
+            float x = Random.Range(minSize, maxSize);
+            float y = Random.Range(minSize, maxSize);
+            float z = Random.Range(minSize, maxSize);
+            Vector3 position = new Vector3(x, y, z);
+            if (Vector3.Distance(stationUnit.transform.position, position) > 15)
+            {
+                if (Vector3.Distance(playerController.transform.position, position) > 15)
+                {
+                    bool isValidPos = true;
+                    for (int i = 0; i < units.Count; i++)
+                    {
+                        if (Vector3.Distance(units[i].position, position) < 15)
+                        {
+                            isValidPos = false;
+                            break;
+                        }
+                    }
+                    if (isValidPos)
+                    {
+                        Transform transform = GameObject.Instantiate(enemyOmegaPrefab, position, Quaternion.identity, scene).transform;
+                        transform.gameObject.name = "Omega " + omegaCount;
+                        units.Add(transform);
+                        omegaCount--;
+                    }
+                }
+            }
+        }
+
+        while (betaCount > 0)
+        {
+            float x = Random.Range(minSize, maxSize);
+            float y = Random.Range(minSize, maxSize);
+            float z = Random.Range(minSize, maxSize);
+            Vector3 position = new Vector3(x, y, z);
+            if (Vector3.Distance(stationUnit.transform.position, position) > 15)
+            {
+                if (Vector3.Distance(playerController.transform.position, position) > 15)
+                {
+                    bool isValidPos = true;
+                    for (int i = 0; i < units.Count; i++)
+                    {
+                        if (Vector3.Distance(units[i].position, position) < 15)
+                        {
+                            isValidPos = false;
+                            break;
+                        }
+                    }
+                    if (isValidPos)
+                    {
+                        Transform transform = GameObject.Instantiate(enemyBetaPrefab, position, Quaternion.identity, scene).transform;
+                        transform.gameObject.name = "Beta " + betaCount;
+                        units.Add(transform);
+                        betaCount--;
+                    }
+                }
+            }
+        }
+
+        while (alphaCount > 0)
+        {
+            float x = Random.Range(minSize, maxSize);
+            float y = Random.Range(minSize, maxSize);
+            float z = Random.Range(minSize, maxSize);
+            Vector3 position = new Vector3(x, y, z);
+            if (Vector3.Distance(stationUnit.transform.position, position) > 15)
+            {
+                if (Vector3.Distance(playerController.transform.position, position) > 15)
+                {
+                    bool isValidPos = true;
+                    for (int i = 0; i < units.Count; i++)
+                    {
+                        if (Vector3.Distance(units[i].position, position) < 15)
+                        {
+                            isValidPos = false;
+                            break;
+                        }
+                    }
+                    if (isValidPos)
+                    {
+                        Transform transform = GameObject.Instantiate(enemyAlphaPrefab, position, Quaternion.identity, scene).transform;
+                        transform.gameObject.name = "Alpha " + alphaCount;
+                        units.Add(transform);
+                        alphaCount--;
+                    }
+                }
+            }
+        }
+
+        while (meteorCount > 0)
+        {
+            float x = Random.Range(minSize, maxSize);
+            float y = Random.Range(minSize, maxSize);
+            float z = Random.Range(minSize, maxSize);
+            Vector3 position = new Vector3(x, y, z);
+            if (Vector3.Distance(stationUnit.transform.position, position) > 15)
+            {
+                if (Vector3.Distance(playerController.transform.position, position) > 15)
+                {
+                    bool isValidPos = true;
+                    for (int i = 0; i < units.Count; i++)
+                    {
+                        if (Vector3.Distance(units[i].position, position) < 15)
+                        {
+                            isValidPos = false;
+                            break;
+                        }
+                    }
+                    if (isValidPos)
+                    {
+                        GameObject go = GameObject.Instantiate(meteorPrefab, position, Quaternion.identity, scene);
+                        go.name = "Meteor " + meteorCount;
+                        meteorCount--;
+                    }
+                }
+            }
+        }
+    }
+
+    public void StartGame(int difficulty = 2)
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -59,21 +184,6 @@ public class GameController : MonoBehaviour
             meteorCount = 400;
         }
 
-        for (int i = 0; i < meteorCount; i++)
-        {
-            float x = Random.Range(-100, 100);
-            float y = Random.Range(-100, 100);
-            float z = Random.Range(-100, 100);
-            Vector3 position = new Vector3(x, y, z);
-            if (Vector3.Distance(stationUnit.transform.position, position) > 15)
-            {
-                if (Vector3.Distance(playerController.transform.position, position) > 15)
-                {
-                    GameObject.Instantiate(meteorPrefab, position, Quaternion.identity, scene);
-                }
-            }
-        }
-
         int omegaCount = 3;
         int betaCount = 2;
         int alphaCount = 1;
@@ -90,50 +200,16 @@ public class GameController : MonoBehaviour
             alphaCount = 4;
         }
 
-        for (int i = 0; i < omegaCount; i++)
+        int size = 75;
+        if (difficulty == 1)
         {
-            float x = Random.Range(-100, 100);
-            float y = Random.Range(-100, 100);
-            float z = Random.Range(-100, 100);
-            Vector3 position = new Vector3(x, y, z);
-            if (Vector3.Distance(stationUnit.transform.position, position) > 15)
-            {
-                if (Vector3.Distance(playerController.transform.position, position) > 15)
-                {
-                    GameObject.Instantiate(enemyOmegaPrefab, position, Quaternion.identity, scene);
-                }
-            }
+            size = 150;
         }
-
-        for (int i = 0; i < betaCount; i++)
+        else if (difficulty == 2)
         {
-            float x = Random.Range(-100, 100);
-            float y = Random.Range(-100, 100);
-            float z = Random.Range(-100, 100);
-            Vector3 position = new Vector3(x, y, z);
-            if (Vector3.Distance(stationUnit.transform.position, position) > 15)
-            {
-                if (Vector3.Distance(playerController.transform.position, position) > 15)
-                {
-                    GameObject.Instantiate(enemyBetaPrefab, position, Quaternion.identity, scene);
-                }
-            }
+            size = 300;
         }
-
-        for (int i = 0; i < alphaCount; i++)
-        {
-            float x = Random.Range(-100, 100);
-            float y = Random.Range(-100, 100);
-            float z = Random.Range(-100, 100);
-            Vector3 position = new Vector3(x, y, z);
-            if (Vector3.Distance(stationUnit.transform.position, position) > 15)
-            {
-                if (Vector3.Distance(playerController.transform.position, position) > 15)
-                {
-                    GameObject.Instantiate(enemyAlphaPrefab, position, Quaternion.identity, scene);
-                }
-            }
-        }
+        GenerateScene(-size, size, meteorCount, omegaCount, betaCount, alphaCount);
 
         scene.gameObject.SetActive(true);
 
