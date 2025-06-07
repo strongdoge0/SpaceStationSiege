@@ -4,39 +4,63 @@ public class EnemyController : MonoBehaviour
 {
     Vector3 _orbitCenter = Vector3.zero;
     public float movementSpeed = 10;
-    float _angularSpeed = 1f;
+    public float heightChangeSpeed  = 0.1f;
+    private float _angularSpeed = 1f;
 
-    float _radius;
-    float _currentAngle;
+    private float _radius;
+    private float _currentAngle;
+
+    private float _targetHeight;
+    private float _currentHeight;
+
+    private Vector3 _prevPos;
+
+    void ChangeTargetHeight()
+    {
+        _targetHeight = Random.Range(-150, 150);
+        Invoke("ChangeTargetHeight", 15 * Random.Range(1, 10));
+
+    }
 
     void Start()
     {
         Vector3 offset = transform.position - _orbitCenter;
         _radius = offset.magnitude;
-        //_angularSpeed = Mathf.Lerp(0.1789f * (movementSpeed / 10), 0.003777f * (movementSpeed / 10), Vector3.Distance(transform.position, _orbitCenter) / 300);
         _angularSpeed = movementSpeed / _radius;
-
+        if (Random.value < 0.5f)
+        {
+            _angularSpeed *= -1;
+            //Debug.Log("_angularSpeed = -1");
+        }
         _currentAngle = Mathf.Atan2(offset.z, offset.x);
+        _targetHeight = transform.position.y;
+        _currentHeight = _targetHeight;
+        Invoke("ChangeTargetHeight", 60 * Random.Range(0, 1));
+        _prevPos = transform.position;
     }
 
     void Update()
     {
         _currentAngle += _angularSpeed * Time.deltaTime;
 
+        //_currentHeight = Mathf.Lerp(_currentHeight, _targetHeight, heightChangeSpeed  * Time.deltaTime);
+        _currentHeight = Mathf.MoveTowards(_currentHeight, _targetHeight, heightChangeSpeed * Time.deltaTime);
+        
         float x = _orbitCenter.x + Mathf.Cos(_currentAngle) * _radius;
         float z = _orbitCenter.z + Mathf.Sin(_currentAngle) * _radius;
-        Vector3 currentPos = new Vector3(x, transform.position.y, z);
+        Vector3 currentPos = new Vector3(x, _currentHeight, z);
 
-        float nextAngle = _currentAngle + 0.01f;
+        /*float nextAngle = _currentAngle + 0.01f;
         float nextX = _orbitCenter.x + Mathf.Cos(nextAngle) * _radius;
         float nextZ = _orbitCenter.z + Mathf.Sin(nextAngle) * _radius;
-        Vector3 nextPos = new Vector3(nextX, transform.position.y, nextZ);
+        Vector3 nextPos = new Vector3(nextX, _currentHeight, nextZ);*/
 
-        Vector3 direction = (nextPos - currentPos).normalized;
+        Vector3 direction = (currentPos - _prevPos).normalized;
         transform.position = currentPos;
         if (direction != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(direction);
         }
+        _prevPos = currentPos;
     }
 }
