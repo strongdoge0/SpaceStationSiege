@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
     public Vector3 offset = new Vector3(0, 2.2f, 6);
     public UIController uIController;
     private Unit _targetInCrosshair = null;
+    private bool _targetLock = false;
 
     public float cameraMovementSpeed = 30;
 
@@ -24,7 +25,7 @@ public class CameraController : MonoBehaviour
     public void InitializeTarget(PlayerController target)
     {
         _target = target;
-        transform.position = target.transform.position - target.transform.forward * (offset.z + target.speed/3) + target.transform.up * offset.y;
+        transform.position = target.transform.position - target.transform.forward * (offset.z + target.speed / 3) + target.transform.up * offset.y;
     }
 
     void Update()
@@ -36,16 +37,32 @@ public class CameraController : MonoBehaviour
             //transform.position = target.position + target.forward * offset.z + target.up * offset.y;
             transform.forward = _target.transform.forward;
 
-            Ray ray = new Ray(transform.position, transform.forward);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (_targetInCrosshair != null)
             {
-                if (hit.collider.GetComponent<Unit>())
+                if (Input.GetKeyDown(KeyCode.R))
                 {
-                    _targetInCrosshair = hit.collider.GetComponent<Unit>();
+                    _targetLock = !_targetLock;
                 }
             }
-            uIController.DrawTargetStatusBar(_targetInCrosshair);
+
+            if (_targetLock && _targetInCrosshair == null)
+            {
+                _targetLock = false;
+            }
+
+            if (!_targetLock)
+            {
+                Ray ray = new Ray(transform.position, transform.forward);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.collider.GetComponent<Unit>())
+                    {
+                        _targetInCrosshair = hit.collider.GetComponent<Unit>();
+                    }
+                }
+            }
+            uIController.DrawTargetStatusBar(_targetInCrosshair, _targetLock);
 
             if (Input.GetMouseButton(1))
             {

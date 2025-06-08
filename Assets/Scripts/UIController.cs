@@ -25,17 +25,22 @@ public class UIController : MonoBehaviour
 
 
     public Image playerFillHealthbar;
+    public WeaponStatusBar bomb;
+    public WeaponStatusBar plasmaGun;
+    public WeaponStatusBar laser;
+
 
     void Start()
     {
 
     }
 
-    public void DrawTargetStatusBar(Unit target)
+    public void DrawTargetStatusBar(Unit target, bool locked)
     {
         if (target != null)
         {
             targetImage.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+            targetImage.GetComponent<Image>().color = locked ? Color.green : Color.white;
             if (targetImage.transform.position.z < 0)
             {
                 targetImage.gameObject.SetActive(false);
@@ -68,6 +73,33 @@ public class UIController : MonoBehaviour
         if (target != null)
         {
             playerFillHealthbar.fillAmount = (float)target.curHealth / (float)target.maxHealth;
+            if (gameController.playerController != null)
+            {
+                if (gameController.playerController.weaponControllers[0] != null)
+                {
+                    WeaponController weapon = gameController.playerController.weaponControllers[0];
+                    bomb.DrawAmount(weapon.amount);
+                    bomb.DrawCooldowm(weapon.curCulldown, weapon.culldown);
+                    bomb.selection.gameObject.SetActive(gameController.playerController.currentWeapon == 0);
+                    bomb.icon.color = gameController.playerController.currentWeapon == 0 && weapon.amount != 0 ? Color.white : Color.grey;
+                }
+                if (gameController.playerController.weaponControllers[1] != null)
+                {
+                    WeaponController weapon = gameController.playerController.weaponControllers[1];
+                    plasmaGun.DrawAmount(weapon.amount);
+                    plasmaGun.DrawCooldowm(weapon.curCulldown, weapon.culldown);
+                    plasmaGun.selection.gameObject.SetActive(gameController.playerController.currentWeapon == 1);
+                    plasmaGun.icon.color = gameController.playerController.currentWeapon == 1 && weapon.amount != 0 ? Color.white : Color.grey;
+                }
+                if (gameController.playerController.weaponControllers[2] != null)
+                {
+                    WeaponController weapon = gameController.playerController.weaponControllers[2];
+                    laser.DrawAmount(weapon.amount);
+                    laser.DrawCooldowm(weapon.curCulldown, weapon.culldown);
+                    laser.selection.gameObject.SetActive(gameController.playerController.currentWeapon == 2);
+                    laser.icon.color = gameController.playerController.currentWeapon == 2 && weapon.amount != 0 ? Color.white : Color.grey;
+                }
+            }
         }
     }
 

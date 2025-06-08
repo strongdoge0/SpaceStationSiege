@@ -1,7 +1,10 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private Unit _unit;
+
     public float maxMovementSpeed = 15;
     public float minMovementSpeed = 5;
     public float movementSpeed = 10;
@@ -25,15 +28,57 @@ public class PlayerController : MonoBehaviour
     //public ParticleSystem bottomRightFlamethrower;
     public ParticleSystem topLeftFlamethrower;
     public ParticleSystem topRightFlamethrower;
+    public WeaponController[] weaponControllers = new WeaponController[3];
+    public int currentWeapon = 1;
 
     void Start()
     {
-
+        _unit = GetComponent<Unit>();
     }
 
 
     void Update()
     {
+        if (_unit.curHealth <= 0) return;
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            currentWeapon++;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            currentWeapon--;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentWeapon = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentWeapon = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentWeapon = 2;
+        }
+
+
+        currentWeapon = Mathf.Clamp(currentWeapon, 0, weaponControllers.Length - 1);
+        /*if (currentWeapon < 0)
+        {
+            currentWeapon = weaponControllers.Length - 1;
+        }
+        else if (currentWeapon > weaponControllers.Length - 1)
+        {
+            currentWeapon = 0;
+        }*/
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            weaponControllers[currentWeapon].Shot();
+        }
+
         if (Input.GetKey(KeyCode.W))
         {
             _currentSpeed = Mathf.Lerp(_currentSpeed, maxMovementSpeed, accelerationSpeed * Time.deltaTime);
@@ -71,14 +116,14 @@ public class PlayerController : MonoBehaviour
             topRightFlamethrower.Stop();
             mainFlamethrower.Play();
         }
-        else 
+        else
         {
             topLeftFlamethrower.Play();
             topRightFlamethrower.Play();
             mainFlamethrower.Play();
         }
 
-        if (_currentSpeed <= maxMovementSpeed - 3)
+        if (_currentSpeed <= maxMovementSpeed - 4)
         {
             hyperdrive.Stop(true);
         }
