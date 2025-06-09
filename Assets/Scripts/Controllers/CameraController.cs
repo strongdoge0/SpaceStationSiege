@@ -4,7 +4,7 @@ public class CameraController : MonoBehaviour
 {
     private PlayerController _target;
     public Vector3 offset = new Vector3(0, 2.2f, 6);
-    public UIController uIController;
+    public GameController gameController;
     private Unit _targetInCrosshair = null;
     private bool _targetLock = false;
 
@@ -15,17 +15,16 @@ public class CameraController : MonoBehaviour
     private float _currentFOV = 75;
     public float zoomSpeed = 5.0f;
 
-
     void Start()
     {
 
     }
 
-
     public void InitializeTarget(PlayerController target)
     {
         _target = target;
         transform.position = target.transform.position - target.transform.forward * (offset.z + target.speed / 3) + target.transform.up * offset.y;
+        _targetLock = false;
     }
 
     void Update()
@@ -52,6 +51,7 @@ public class CameraController : MonoBehaviour
 
             if (!_targetLock)
             {
+                //int layer
                 Ray ray = new Ray(transform.position, transform.forward);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
                     }
                 }
             }
-            uIController.DrawTargetStatusBar(_targetInCrosshair, _targetLock);
+            gameController.uIController.DrawTargetStatusBar(_targetInCrosshair, _targetLock);
 
             if (Input.GetMouseButton(1))
             {
@@ -74,11 +74,12 @@ public class CameraController : MonoBehaviour
             }
             Camera.main.fieldOfView = _currentFOV;
 
-            uIController.DrawPlayerStatusBar(_target.GetComponent<Unit>());
+            gameController.uIController.DrawPlayerStatusBar(_target.GetComponent<Unit>());
         }
         else
         {
             _currentFOV = normalFOV;
+            gameController.uIController.DrawPlayerStatusBar(null);
         }
     }
 }

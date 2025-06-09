@@ -18,6 +18,11 @@ public class GameController : MonoBehaviour
 
     public Vector3 playerSpawnPoint = new Vector3(8, 6, 50);
 
+    bool isPlaying = false;
+
+    public float time = 0;
+    public int score = 0;
+
     public bool isPaused
     {
         get
@@ -172,6 +177,7 @@ public class GameController : MonoBehaviour
         stationUnit = GameObject.Instantiate(stationPrefab, new Vector3(), Quaternion.identity, scene).GetComponent<Unit>();
         stationUnit.curHealth = stationUnit.maxHealth;
         playerController = GameObject.Instantiate(playerPrefab, playerSpawnPoint, Quaternion.identity, scene).GetComponent<PlayerController>();
+        playerController.cameraController = cameraController;
         cameraController.InitializeTarget(playerController);
 
         int meteorCount = 100;
@@ -214,6 +220,18 @@ public class GameController : MonoBehaviour
         scene.gameObject.SetActive(true);
 
         uIController.ShowGameUI();
+        isPlaying = true;
+        time = 0;
+        score = 0;
+    }
+
+    public void Die(string message = "")
+    {
+        SetPaused(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        uIController.ShowGameEnd();
+        isPlaying = false;
     }
 
     public void EndGame()
@@ -223,6 +241,7 @@ public class GameController : MonoBehaviour
             GameObject.Destroy(scene.GetChild(i).gameObject);
         }
         scene.gameObject.SetActive(false);
+        isPlaying = false;
     }
 
     void Start()
@@ -232,20 +251,26 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (isPlaying)
         {
-            SetPaused(!isPaused);
-            if (isPaused)
+            time += Time.deltaTime;
+            uIController.DrawTime(time);
+            uIController.DrawScore(score);
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                uIController.ShowGameMenu();
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                uIController.HideGameMenu();
+                SetPaused(!isPaused);
+                if (isPaused)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    uIController.ShowGameMenu();
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    Cursor.visible = false;
+                    uIController.HideGameMenu();
+                }
             }
         }
     }

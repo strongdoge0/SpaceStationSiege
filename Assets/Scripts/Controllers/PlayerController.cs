@@ -1,9 +1,10 @@
 using System.Linq;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Unit
 {
-    private Unit _unit;
+    //private Unit _unit;
+    public CameraController cameraController;
 
     public float maxMovementSpeed = 15;
     public float minMovementSpeed = 5;
@@ -33,13 +34,36 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        _unit = GetComponent<Unit>();
+        //_unit = GetComponent<Unit>();
     }
 
+    public override void OnTakeDamage(int damage)
+    {
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().score -= damage;
+    }
+
+    public override void Die()
+    {
+        cameraController.gameController.Die();
+        base.Die();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("OnCollisionEnter");
+        Unit unit = collision.gameObject.GetComponent<Unit>();
+        if (unit)
+        {
+            //Debug.Log("OnCollisionEnter with unit " + unit.name);
+            unit.TakeDamage((int)_currentSpeed);
+            TakeDamage((int)_currentSpeed);
+        }
+    }
 
     void Update()
     {
-        if (_unit.curHealth <= 0) return;
+        //if (_unit.curHealth <= 0) return;
+        if (curHealth <= 0) return;
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {

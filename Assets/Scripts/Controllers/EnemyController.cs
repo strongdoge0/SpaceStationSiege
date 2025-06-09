@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : Unit
 {
     Vector3 _orbitCenter = Vector3.zero;
     public float movementSpeed = 10;
@@ -22,6 +22,29 @@ public class EnemyController : MonoBehaviour
 
     }
 
+    public override void OnTakeDamage(int damage)
+    {
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().score += damage;
+    }
+
+    public override void Die()
+    {
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().score += maxHealth;
+        base.Die();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Unit unit = collision.gameObject.GetComponent<Unit>();
+        if (unit)
+        {
+            if (unit.tag == "Enemy") {
+                unit.TakeDamage((int)movementSpeed);
+                TakeDamage((int)movementSpeed);
+            }
+        }
+    }
+
     void Start()
     {
         Vector3 offset = transform.position - _orbitCenter;
@@ -41,6 +64,8 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if (curHealth <= 0) return;
+        
         _currentAngle += _angularSpeed * Time.deltaTime;
 
         //_currentHeight = Mathf.Lerp(_currentHeight, _targetHeight, heightChangeSpeed  * Time.deltaTime);

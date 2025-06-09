@@ -12,10 +12,19 @@ public class Unit : MonoBehaviour
         {
             _health = value;
             _health = Mathf.Clamp(_health, 0, maxHealth);
+            if (_health == 0)
+            {
+                Die();
+            }
         }
     }
 
-    void Die()
+    public virtual void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public virtual void OnTakeDamage(int damage)
     {
 
     }
@@ -23,6 +32,7 @@ public class Unit : MonoBehaviour
     public void TakeDamage(int damage)
     {
         curHealth -= damage;
+        OnTakeDamage(damage);
     }
 
     void Start()
@@ -33,6 +43,6 @@ public class Unit : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 }

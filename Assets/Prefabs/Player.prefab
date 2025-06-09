@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5121838600455338094}
   - component: {fileID: 7441019554565473412}
   - component: {fileID: 7100149317481701160}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flares
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4844,7 +4844,7 @@ GameObject:
   - component: {fileID: 8330954685900406750}
   - component: {fileID: 3452201719941743688}
   - component: {fileID: 269568943709923143}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TopRightFlamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9680,7 +9680,7 @@ GameObject:
   - component: {fileID: 3563125071206321142}
   - component: {fileID: 8231453711377044070}
   - component: {fileID: 2805840028025057472}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14511,8 +14511,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2794277081701266282}
-  - component: {fileID: 1456853259330487430}
-  m_Layer: 0
+  - component: {fileID: 1127505853734885255}
+  m_Layer: 2
   m_Name: Plasma Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14534,7 +14534,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6449788106616402023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1456853259330487430
+--- !u!114 &1127505853734885255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14543,11 +14543,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1075248284779903592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4c9001631bf7b479be8dc96851eab8, type: 3}
+  m_Script: {fileID: 11500000, guid: a9b589c1127bee14bb551e5ab777e1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   amount: 500
-  culldown: 1
+  cooldown: 1
 --- !u!1 &2095132793192105226
 GameObject:
   m_ObjectHideFlags: 0
@@ -14559,7 +14559,7 @@ GameObject:
   - component: {fileID: 6240646938450715545}
   - component: {fileID: 3460019878900557240}
   - component: {fileID: 3624634780560283459}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: hyperdrive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19394,7 +19394,7 @@ GameObject:
   - component: {fileID: 3988824165066619303}
   - component: {fileID: 6340846722269061191}
   - component: {fileID: 1479133747471820296}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24227,7 +24227,7 @@ GameObject:
   - component: {fileID: 1061212940505909283}
   - component: {fileID: 7934849436413399491}
   - component: {fileID: 3271858206920710028}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29060,7 +29060,7 @@ GameObject:
   - component: {fileID: 7946256475957111669}
   - component: {fileID: 1601410179195162642}
   - component: {fileID: 6240707857427588358}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33891,9 +33891,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5794166222484128975}
-  - component: {fileID: 100841971077129119}
-  m_Layer: 0
-  m_Name: Laser
+  - component: {fileID: 1468318399665736475}
+  m_Layer: 2
+  m_Name: Laser Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33914,7 +33914,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6449788106616402023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &100841971077129119
+--- !u!114 &1468318399665736475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33923,11 +33923,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3253023598219564817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4c9001631bf7b479be8dc96851eab8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b743a2d6bb974c44b83075d4755deb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   amount: -1
-  culldown: 5
+  cooldown: 3.75
 --- !u!1 &3608390325269083249
 GameObject:
   m_ObjectHideFlags: 0
@@ -33939,7 +33939,7 @@ GameObject:
   - component: {fileID: 618060386115500658}
   - component: {fileID: 5465952075443479522}
   - component: {fileID: 2238659934833885508}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38772,7 +38772,7 @@ GameObject:
   - component: {fileID: 9148329166518290922}
   - component: {fileID: 6819230654168921344}
   - component: {fileID: 6587013451226787500}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flares
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43605,8 +43605,7 @@ GameObject:
   - component: {fileID: 6869856595976257633}
   - component: {fileID: 7508893557210475053}
   - component: {fileID: 7427111425669495798}
-  - component: {fileID: 8478727666813767678}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43681,27 +43680,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8478727666813767678
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4367128246214667176}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4437323649071878355
 GameObject:
   m_ObjectHideFlags: 0
@@ -43711,7 +43689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6449788106616402023}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43747,7 +43725,7 @@ GameObject:
   - component: {fileID: 5367295560352337498}
   - component: {fileID: 1587983782780335564}
   - component: {fileID: 4205441196344186563}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TopLeftFlamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48583,8 +48561,7 @@ GameObject:
   - component: {fileID: 3680002671488639859}
   - component: {fileID: 1922814855370356871}
   - component: {fileID: 6623629575715448372}
-  - component: {fileID: 1380702402091829990}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48659,27 +48636,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1380702402091829990
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4593786300683384147}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5080246775457166299
 GameObject:
   m_ObjectHideFlags: 0
@@ -48691,7 +48647,7 @@ GameObject:
   - component: {fileID: 298342383161669481}
   - component: {fileID: 2626810378860956547}
   - component: {fileID: 2431748002771619887}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flares
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53524,7 +53480,7 @@ GameObject:
   - component: {fileID: 3684335416574818951}
   - component: {fileID: 8022234214775898385}
   - component: {fileID: 4828332866463310366}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MainFlamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58360,7 +58316,7 @@ GameObject:
   - component: {fileID: 8234060734439867633}
   - component: {fileID: 3534338667151514977}
   - component: {fileID: 7334069527351410631}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63193,7 +63149,7 @@ GameObject:
   - component: {fileID: 7240700031848718227}
   - component: {fileID: 349084352673908339}
   - component: {fileID: 5161675406940766268}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68028,10 +67984,9 @@ GameObject:
   - component: {fileID: 5218803654242311999}
   - component: {fileID: 2691319890068858899}
   - component: {fileID: 7489096523446190142}
-  - component: {fileID: 2216091037587074869}
   - component: {fileID: 4529703417237361879}
   - component: {fileID: 2702398112335834881}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -68132,8 +68087,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.9572883, y: 1.611603, z: 1.6291056}
+  m_Center: {x: -0.021359682, y: -0.05408907, z: 0.2700696}
 --- !u!54 &7489096523446190142
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -68161,20 +68116,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2216091037587074869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5667441016203417902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e3a76f41687df429644db075862954, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: "\u0418\u0433\u0440\u043E\u043A"
-  maxHealth: 100
 --- !u!114 &4529703417237361879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68187,6 +68128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 812b12544c18694469c05eb0dadc0fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: "\u0418\u0433\u0440\u043E\u043A"
+  maxHealth: 100
+  cameraController: {fileID: 0}
   maxMovementSpeed: 15
   minMovementSpeed: 5
   movementSpeed: 10
@@ -68199,9 +68143,9 @@ MonoBehaviour:
   topLeftFlamethrower: {fileID: 4205441196344186563}
   topRightFlamethrower: {fileID: 269568943709923143}
   weaponControllers:
-  - {fileID: 5461572416626591252}
-  - {fileID: 1456853259330487430}
-  - {fileID: 100841971077129119}
+  - {fileID: 8672159700460029142}
+  - {fileID: 1127505853734885255}
+  - {fileID: 1468318399665736475}
   currentWeapon: 1
 --- !u!82 &2702398112335834881
 AudioSource:
@@ -68311,8 +68255,7 @@ GameObject:
   - component: {fileID: 2534172247794075578}
   - component: {fileID: 9151718245009343180}
   - component: {fileID: 9002151225922670184}
-  - component: {fileID: 5150099408660256289}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68387,27 +68330,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5150099408660256289
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6077566933276994697}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6237534294524648168
 GameObject:
   m_ObjectHideFlags: 0
@@ -68419,7 +68341,7 @@ GameObject:
   - component: {fileID: 1455622772952440410}
   - component: {fileID: 3775366677166219952}
   - component: {fileID: 3580300193610873116}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flares
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73252,7 +73174,7 @@ GameObject:
   - component: {fileID: 5024161228958646264}
   - component: {fileID: 755073218209184213}
   - component: {fileID: 2312747516822002304}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78085,7 +78007,7 @@ GameObject:
   - component: {fileID: 7085788935170829762}
   - component: {fileID: 2386058605841986642}
   - component: {fileID: 8491357338442913524}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82918,7 +82840,7 @@ GameObject:
   - component: {fileID: 8389264592429610656}
   - component: {fileID: 1497648897282109248}
   - component: {fileID: 6318956604353210639}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87751,7 +87673,7 @@ GameObject:
   - component: {fileID: 5622237415659408762}
   - component: {fileID: 3360286936023176346}
   - component: {fileID: 7916172678394385109}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92584,7 +92506,7 @@ GameObject:
   - component: {fileID: 1827180512609806446}
   - component: {fileID: 4985101021106230264}
   - component: {fileID: 7600878105882341623}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BottomLeftFlamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97420,7 +97342,7 @@ GameObject:
   - component: {fileID: 5201611434056400683}
   - component: {fileID: 821602214109980347}
   - component: {fileID: 6894252324370334749}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102253,8 +102175,7 @@ GameObject:
   - component: {fileID: 6634078631917176542}
   - component: {fileID: 424542540131691802}
   - component: {fileID: 4289300716507611614}
-  - component: {fileID: 88330234505301345}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102329,27 +102250,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &88330234505301345
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8350695138182560954}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8516154058620625788
 GameObject:
   m_ObjectHideFlags: 0
@@ -102359,9 +102259,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6668849241791949403}
-  - component: {fileID: 5461572416626591252}
-  m_Layer: 0
-  m_Name: Bomb
+  - component: {fileID: 8672159700460029142}
+  m_Layer: 2
+  m_Name: Rocket Launcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102382,7 +102282,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6449788106616402023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5461572416626591252
+--- !u!114 &8672159700460029142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102391,11 +102291,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8516154058620625788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4c9001631bf7b479be8dc96851eab8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d0690457f7ecd242a5a407088be6977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 5
-  culldown: 2
+  amount: 30
+  cooldown: 2
 --- !u!1 &8951056085945428064
 GameObject:
   m_ObjectHideFlags: 0
@@ -102405,7 +102305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 432322568147820598}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102443,7 +102343,7 @@ GameObject:
   - component: {fileID: 4488250752338627763}
   - component: {fileID: 2170412355901223001}
   - component: {fileID: 2005748327705652213}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flares
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107276,7 +107176,7 @@ GameObject:
   - component: {fileID: 669900673245528413}
   - component: {fileID: 6142389914294991563}
   - component: {fileID: 8749152394890107332}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BottomRightFlamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
