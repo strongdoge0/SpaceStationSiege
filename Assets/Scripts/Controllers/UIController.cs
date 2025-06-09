@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     public RectTransform gameUI;
     public RectTransform gameMenu;
     public RectTransform gameEnd;
+    public RectTransform gameSettings;
 
     public AudioSource audioSource;
 
@@ -25,16 +26,17 @@ public class UIController : MonoBehaviour
     public RectTransform distanceLabel;
     public TMP_Text distanceValueLabel;
 
-
     public TMP_Text speedValueLabel;
-
-
 
     public Image playerFillHealthbar;
     public WeaponStatusBar rocketLauncher;
     public WeaponStatusBar plasmaGun;
     public WeaponStatusBar laserGun;
 
+    public Slider musicVolumeSlider;
+    public Slider effectsVolumeSlider;
+    public Slider interfaceVolumeSlider;
+    public TMP_Dropdown difficultyDropdown;
 
     void Start()
     {
@@ -168,6 +170,23 @@ public class UIController : MonoBehaviour
         string timeFormatted = string.Format("{0:D2}:{1:D2}:{2:D2}", hours, minutes, seconds);
         gameEndTimeValueLabel.text = timeFormatted;
         gameEndScoreValueLabel.text = gameController.score.ToString();
+    }
+
+    public void ShowGameSettings()
+    {
+        gameSettings.gameObject.SetActive(true);
+        // init
+    }
+    
+    public void HideGameSettings()
+    {
+        gameSettings.gameObject.SetActive(false);
+    }
+
+    public void OnGameSettingsApplyButton()
+    {
+        // save & reload
+        HideGameSettings();
     }
 
     public void OnNewGameButton()

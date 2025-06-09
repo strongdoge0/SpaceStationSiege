@@ -258,18 +258,25 @@ public class GameController : MonoBehaviour
             uIController.DrawScore(score);
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SetPaused(!isPaused);
-                if (isPaused)
+                if (!uIController.gameSettings.gameObject.activeSelf)
                 {
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    uIController.ShowGameMenu();
+                    SetPaused(!isPaused);
+                    if (isPaused)
+                    {
+                        Cursor.lockState = CursorLockMode.None;
+                        Cursor.visible = true;
+                        uIController.ShowGameMenu();
+                    }
+                    else
+                    {
+                        Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
+                        uIController.HideGameMenu();
+                    }
                 }
                 else
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                    uIController.HideGameMenu();
+                    uIController.HideGameSettings();
                 }
             }
         }
