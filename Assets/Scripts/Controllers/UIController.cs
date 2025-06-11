@@ -14,8 +14,13 @@ public class UIController : MonoBehaviour
 
     public AudioSource audioSource;
 
+    public RectTransform newGame;
+    public TMP_Dropdown newGameWorldSizeDropdown;
+    public TMP_Dropdown newGameDifficultyDropdown;
+
     public TMP_Text timeValueLabel;
     public TMP_Text scoreValueLabel;
+    public TMP_Text gameEndMessageLabel;
     public TMP_Text gameEndTimeValueLabel;
     public TMP_Text gameEndScoreValueLabel;
 
@@ -137,6 +142,7 @@ public class UIController : MonoBehaviour
         gameUI.gameObject.SetActive(false);
         gameMenu.gameObject.SetActive(false);
         gameEnd.gameObject.SetActive(false);
+        newGame.gameObject.SetActive(false);
     }
 
     public void ShowGameUI()
@@ -145,6 +151,7 @@ public class UIController : MonoBehaviour
         gameUI.gameObject.SetActive(true);
         gameMenu.gameObject.SetActive(false);
         gameEnd.gameObject.SetActive(false);
+        newGame.gameObject.SetActive(false);
     }
 
     public void ShowGameMenu()
@@ -157,12 +164,14 @@ public class UIController : MonoBehaviour
         gameMenu.gameObject.SetActive(false);
     }
 
-    public void ShowGameEnd()
+    public void ShowGameEnd(string message = "")
     {
         mainMenu.gameObject.SetActive(false);
         gameUI.gameObject.SetActive(false);
         gameMenu.gameObject.SetActive(false);
         gameEnd.gameObject.SetActive(true);
+        newGame.gameObject.SetActive(false);
+        gameEndMessageLabel.text = message;
         int totalSeconds = Mathf.FloorToInt(gameController.time);
         int hours = totalSeconds / 3600;
         int minutes = (totalSeconds % 3600) / 60;
@@ -174,25 +183,70 @@ public class UIController : MonoBehaviour
 
     public void ShowGameSettings()
     {
+        difficultyDropdown.value = gameController.gameDifficulty;
+        musicVolumeSlider.value = gameController.musicVolume;
+        effectsVolumeSlider.value = gameController.effectsVolume;
+        interfaceVolumeSlider.value = gameController.interfaceVolume;
+
         gameSettings.gameObject.SetActive(true);
-        // init
+
+
     }
-    
+
     public void HideGameSettings()
     {
         gameSettings.gameObject.SetActive(false);
     }
 
+    public void ShowNewGame()
+    {
+        newGame.gameObject.SetActive(true);
+        newGameDifficultyDropdown.value = gameController.gameDifficulty;
+    }
+
+    public void HideNewGame()
+    {
+        newGame.gameObject.SetActive(false);
+    }
+
     public void OnGameSettingsApplyButton()
     {
-        // save & reload
+        gameController.gameDifficulty = difficultyDropdown.value;
+        gameController.playerDamageMultiplier = 1.25f;
+        if (difficultyDropdown.value == 1)
+        {
+            gameController.playerDamageMultiplier = 1;
+        }
+        else if (difficultyDropdown.value == 2)
+        {
+            gameController.playerDamageMultiplier = 0.75f;
+        }
+        gameController.musicVolume = musicVolumeSlider.value;
+        gameController.effectsVolume = effectsVolumeSlider.value;
+        gameController.interfaceVolume = interfaceVolumeSlider.value;
+        gameController.SaveGameSettings();
+        gameController.InitializeWorld();
+
+        //
+
         HideGameSettings();
     }
 
     public void OnNewGameButton()
     {
+        gameController.gameDifficulty = newGameDifficultyDropdown.value;
+        gameController.playerDamageMultiplier = 1.25f;
+        if (newGameDifficultyDropdown.value == 1)
+        {
+            gameController.playerDamageMultiplier = 1;
+        }
+        else if (newGameDifficultyDropdown.value == 2)
+        {
+            gameController.playerDamageMultiplier = 0.75f;
+        }
+        gameController.SaveGameSettings();
         ShowGameUI();
-        gameController.StartGame();
+        gameController.StartGame(newGameWorldSizeDropdown.value);
     }
 
     public void OnResumeButton()

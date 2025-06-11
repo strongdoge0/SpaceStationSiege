@@ -17,7 +17,7 @@ public class StationController : Unit
 
     public override void Die()
     {
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().Die();
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().Die("Командная станция уничтожена");
         base.Die();
     }
 

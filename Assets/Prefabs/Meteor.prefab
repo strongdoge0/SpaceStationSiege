@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8750919634380567287}
   - component: {fileID: 9140392372581390488}
   - component: {fileID: 3349518296141416214}
-  - component: {fileID: 7205802051601417617}
+  - component: {fileID: -4172329861287606846}
   m_Layer: 0
   m_Name: Meteor
-  m_TagString: Enemy
+  m_TagString: Meteor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.698189, y: -4.2478924, z: 30.576962}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5544365690297792081}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -7363874130871373781, guid: 495665dd247f1ee43a53f98fd0120f4d, type: 3}
 --- !u!23 &8750919634380567287
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -108,8 +108,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.1292615
+  m_Center: {x: -0.04926157, y: 0, z: 0}
 --- !u!54 &3349518296141416214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,7 +137,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7205802051601417617
+--- !u!114 &-4172329861287606846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,8 +146,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5544365690297792081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e3a76f41687df429644db075862954, type: 3}
+  m_Script: {fileID: 11500000, guid: e9b190a10704d7446b34d61a1068058e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: "\u041C\u0435\u0442\u0435\u043E\u0440"
   maxHealth: 100
+  explosionPrefab: {fileID: 2430983699813893301, guid: 17a0113106cd4a74cbb476cbd1a32452, type: 3}

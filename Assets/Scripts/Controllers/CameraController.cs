@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
     public Vector3 offset = new Vector3(0, 2.2f, 6);
     public GameController gameController;
     private Unit _targetInCrosshair = null;
+    public Unit target { get { return _targetInCrosshair; } }
     private bool _targetLock = false;
 
     public float cameraMovementSpeed = 30;
@@ -42,6 +43,13 @@ public class CameraController : MonoBehaviour
                 {
                     _targetLock = !_targetLock;
                 }
+                else if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    _targetInCrosshair = null;
+                    _targetLock = false;
+                }
+                
+                
             }
 
             if (_targetLock && _targetInCrosshair == null)

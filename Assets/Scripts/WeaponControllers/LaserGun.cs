@@ -15,5 +15,10 @@ public class LaserGun : WeaponController
     void Update()
     {
         UpdateCooldown();
+        if (!isEnabled) return;
+        if (Input.GetMouseButtonDown(0))
+        {
+            Shot();
+        }
     }
 }

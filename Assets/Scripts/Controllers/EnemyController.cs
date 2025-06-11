@@ -4,7 +4,7 @@ public class EnemyController : Unit
 {
     Vector3 _orbitCenter = Vector3.zero;
     public float movementSpeed = 10;
-    public float heightChangeSpeed  = 0.1f;
+    public float heightChangeSpeed = 0.1f;
     private float _angularSpeed = 1f;
 
     private float _radius;
@@ -14,6 +14,8 @@ public class EnemyController : Unit
     private float _currentHeight;
 
     private Vector3 _prevPos;
+
+    public AudioSource audioSource;
 
     void ChangeTargetHeight()
     {
@@ -29,6 +31,8 @@ public class EnemyController : Unit
 
     public override void Die()
     {
+        this.tag = "Untagged";
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().CheckEnemiesCount();
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().score += maxHealth;
         base.Die();
     }
@@ -38,7 +42,8 @@ public class EnemyController : Unit
         Unit unit = collision.gameObject.GetComponent<Unit>();
         if (unit)
         {
-            if (unit.tag == "Enemy") {
+            if (unit.tag == "Meteor" || unit.tag == "Enemy")
+            {
                 unit.TakeDamage((int)movementSpeed);
                 TakeDamage((int)movementSpeed);
             }
@@ -65,12 +70,12 @@ public class EnemyController : Unit
     void Update()
     {
         if (curHealth <= 0) return;
-        
+
         _currentAngle += _angularSpeed * Time.deltaTime;
 
         //_currentHeight = Mathf.Lerp(_currentHeight, _targetHeight, heightChangeSpeed  * Time.deltaTime);
         _currentHeight = Mathf.MoveTowards(_currentHeight, _targetHeight, heightChangeSpeed * Time.deltaTime);
-        
+
         float x = _orbitCenter.x + Mathf.Cos(_currentAngle) * _radius;
         float z = _orbitCenter.z + Mathf.Sin(_currentAngle) * _radius;
         Vector3 currentPos = new Vector3(x, _currentHeight, z);
@@ -87,5 +92,7 @@ public class EnemyController : Unit
             transform.rotation = Quaternion.LookRotation(direction);
         }
         _prevPos = currentPos;
+
+        audioSource.pitch = Mathf.Lerp(0.7f, 1.5f, movementSpeed / 15);
     }
 }

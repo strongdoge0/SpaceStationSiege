@@ -19,8 +19,14 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public GameObject explosionPrefab;
+
     public virtual void Die()
     {
+        if (explosionPrefab != null)
+        {
+            GameObject.Instantiate(explosionPrefab, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 

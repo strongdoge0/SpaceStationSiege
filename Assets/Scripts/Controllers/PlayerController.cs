@@ -35,6 +35,7 @@ public class PlayerController : Unit
     void Start()
     {
         //_unit = GetComponent<Unit>();
+        SelectWeapon(currentWeapon);
     }
 
     public override void OnTakeDamage(int damage)
@@ -44,7 +45,7 @@ public class PlayerController : Unit
 
     public override void Die()
     {
-        cameraController.gameController.Die();
+        cameraController.gameController.Die("Корабль игрока уничтожен");
         base.Die();
     }
 
@@ -60,6 +61,23 @@ public class PlayerController : Unit
         }
     }
 
+    void SelectWeapon(int weaponIndex)
+    {
+        currentWeapon = Mathf.Clamp(currentWeapon, 0, weaponControllers.Length - 1);
+
+        for (int i = 0; i < weaponControllers.Length; i++)
+        {
+            if (i != currentWeapon)
+            {
+                weaponControllers[i].isEnabled = false;
+            }
+            else
+            {
+                weaponControllers[i].isEnabled = true;
+            }
+        }
+    }
+
     void Update()
     {
         //if (_unit.curHealth <= 0) return;
@@ -68,27 +86,32 @@ public class PlayerController : Unit
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             currentWeapon++;
+            SelectWeapon(currentWeapon);
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             currentWeapon--;
+            SelectWeapon(currentWeapon);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentWeapon = 0;
+            SelectWeapon(currentWeapon);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentWeapon = 1;
+            SelectWeapon(currentWeapon);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             currentWeapon = 2;
+            SelectWeapon(currentWeapon);
         }
 
 
-        currentWeapon = Mathf.Clamp(currentWeapon, 0, weaponControllers.Length - 1);
+
         /*if (currentWeapon < 0)
         {
             currentWeapon = weaponControllers.Length - 1;
@@ -98,10 +121,10 @@ public class PlayerController : Unit
             currentWeapon = 0;
         }*/
 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             weaponControllers[currentWeapon].Shot();
-        }
+        }*/
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -147,13 +170,19 @@ public class PlayerController : Unit
             mainFlamethrower.Play();
         }
 
-        if (_currentSpeed <= maxMovementSpeed - 4)
+        if (_currentSpeed < maxMovementSpeed - 4)
         {
-            hyperdrive.Stop(true);
+            if (hyperdrive.isPlaying)
+            {
+                hyperdrive.Stop(true);
+            }
         }
         else
         {
-            hyperdrive.Play(true);
+            if (!hyperdrive.isPlaying)
+            {
+                hyperdrive.Play(true);
+            }
         }
 
         _rotation.x += Input.mousePositionDelta.x * mouseSensitivity * Time.deltaTime;

@@ -8,6 +8,8 @@ TagManager:
   - UIController
   - Meteor
   - Enemy
+  - Rocket
+  - AudioController
   layers:
   - Default
   - TransparentFX
