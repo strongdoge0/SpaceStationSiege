@@ -113,7 +113,7 @@ public class UIController : MonoBehaviour
                     if (gameController.playerController.currentWeapon == 0)
                     {
                         weaponLabel.text = weapon.name;
-                        weaponVisibleValue.fillAmount = weapon.amount / weapon.maxAmount;
+                        weaponVisibleValue.fillAmount = (float)weapon.amount / (float)weapon.maxAmount;
                     }
                     rocketLauncher.DrawAmount(weapon.amount);
                     rocketLauncher.DrawCooldowm(weapon.curCooldown, weapon.cooldown);
@@ -126,7 +126,7 @@ public class UIController : MonoBehaviour
                     if (gameController.playerController.currentWeapon == 1)
                     {
                         weaponLabel.text = weapon.name;
-                        weaponVisibleValue.fillAmount = weapon.amount / weapon.maxAmount;
+                        weaponVisibleValue.fillAmount = (float)weapon.amount / (float)weapon.maxAmount;
                     }
                     plasmaGun.DrawAmount(weapon.amount);
                     plasmaGun.DrawCooldowm(weapon.curCooldown, weapon.cooldown);

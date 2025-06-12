@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class LaserGun : WeaponController
 {
+    public GameObject hitPrefab;
+    public GameObject leserTracePrefab;
+
     public float minPrepareTime = 0.25f;
     public float maxPrepareTime = 2.5f;
     private float _prepareTime = 0;
@@ -11,17 +14,16 @@ public class LaserGun : WeaponController
 
     public int damagePerSecond = 10;
 
-    public GameObject leserTracePrefab;
-
     public AudioSource prepareAudioSource;
     public AudioSource lowShotAudioSource;
     public AudioSource highShotAudioSource;
 
     public ParticleSystem implosionParticle;
+    public ParticleSystem beamParticle;
 
     public override void Shot()
     {
-        BulletTraceController bulletTrace = GameObject.Instantiate(leserTracePrefab, transform.position , transform.rotation).GetComponent<BulletTraceController>();
+        BulletTraceController bulletTrace = GameObject.Instantiate(leserTracePrefab, transform.position, transform.rotation).GetComponent<BulletTraceController>();
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
 
         Vector3 hitPoint;
@@ -30,9 +32,10 @@ public class LaserGun : WeaponController
         if (Physics.Raycast(ray, out hit, 200))
         {
             hitPoint = hit.point;
-            /*Transform hitTransform = GameObject.Instantiate(hitPrefab, hit.point, Quaternion.identity).transform;
+            Transform hitTransform = GameObject.Instantiate(hitPrefab, hit.point, Quaternion.identity).transform;
             hitTransform.up = hit.normal;
-            hitTransform.position += hitTransform.up * 0.1f;*/
+            hitTransform.localScale *= _prepareTime;
+            hitTransform.position += hitTransform.up * 0.1f;
 
             Unit unit = hit.collider.GetComponent<Unit>();
             if (unit)
@@ -43,14 +46,18 @@ public class LaserGun : WeaponController
         }
         else
         {
-            hitPoint = cameraController.transform.position+ cameraController.transform.forward * 200;
+            hitPoint = cameraController.transform.position + cameraController.transform.forward * 200;
         }
         bulletTrace.hitPoint = hitPoint;
     }
 
     void Start()
     {
-        implosionParticle.Stop(true);
+        if (implosionParticle.isPlaying)
+        {
+            implosionParticle.Stop(false);
+        }
+        beamParticle.Stop(false);
         cooldown = maxPrepareTime;
         Initialize();
     }
@@ -62,7 +69,11 @@ public class LaserGun : WeaponController
 
         if (_isPreparingStart)
         {
-            implosionParticle.Play(true);
+            if (!implosionParticle.isPlaying)
+            {
+                implosionParticle.Play(false);
+            }
+            beamParticle.Play(false);
             _prepareTime += Time.deltaTime;
             _prepareTime = Mathf.Clamp(_prepareTime, 0, maxPrepareTime);
             if (!Input.GetMouseButton(0))
@@ -92,7 +103,11 @@ public class LaserGun : WeaponController
         }
         else
         {
-            implosionParticle.Stop(true);
+            if (implosionParticle.isPlaying)
+            {
+                implosionParticle.Stop(false);
+            }
+            beamParticle.Stop(false);
             if (Input.GetMouseButton(0) && _prepareTime == 0 && _isPreparingEnd)
             {
                 if (curCooldown <= 0)
