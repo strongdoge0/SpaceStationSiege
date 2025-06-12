@@ -93,7 +93,7 @@ public class LaserGun : WeaponController
         else
         {
             implosionParticle.Stop(true);
-            if (Input.GetMouseButtonDown(0) && _prepareTime == 0 && _isPreparingEnd)
+            if (Input.GetMouseButton(0) && _prepareTime == 0 && _isPreparingEnd)
             {
                 if (curCooldown <= 0)
                 {
