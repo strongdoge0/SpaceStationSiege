@@ -38,6 +38,9 @@ public class UIController : MonoBehaviour
     public WeaponStatusBar plasmaGun;
     public WeaponStatusBar laserGun;
 
+    public TMP_Text weaponLabel;
+    public Image weaponVisibleValue;
+
     public Slider musicVolumeSlider;
     public Slider effectsVolumeSlider;
     public Slider interfaceVolumeSlider;
@@ -106,7 +109,12 @@ public class UIController : MonoBehaviour
             {
                 if (gameController.playerController.weaponControllers[0] != null)
                 {
-                    WeaponController weapon = gameController.playerController.weaponControllers[0];
+                    RocketLauncher weapon = gameController.playerController.weaponControllers[0] as RocketLauncher;
+                    if (gameController.playerController.currentWeapon == 0)
+                    {
+                        weaponLabel.text = weapon.name;
+                        weaponVisibleValue.fillAmount = weapon.amount / weapon.maxAmount;
+                    }
                     rocketLauncher.DrawAmount(weapon.amount);
                     rocketLauncher.DrawCooldowm(weapon.curCooldown, weapon.cooldown);
                     rocketLauncher.selection.gameObject.SetActive(gameController.playerController.currentWeapon == 0);
@@ -114,7 +122,12 @@ public class UIController : MonoBehaviour
                 }
                 if (gameController.playerController.weaponControllers[1] != null)
                 {
-                    WeaponController weapon = gameController.playerController.weaponControllers[1];
+                    PlasmaGun weapon = gameController.playerController.weaponControllers[1] as PlasmaGun;
+                    if (gameController.playerController.currentWeapon == 1)
+                    {
+                        weaponLabel.text = weapon.name;
+                        weaponVisibleValue.fillAmount = weapon.amount / weapon.maxAmount;
+                    }
                     plasmaGun.DrawAmount(weapon.amount);
                     plasmaGun.DrawCooldowm(weapon.curCooldown, weapon.cooldown);
                     plasmaGun.selection.gameObject.SetActive(gameController.playerController.currentWeapon == 1);
@@ -122,7 +135,19 @@ public class UIController : MonoBehaviour
                 }
                 if (gameController.playerController.weaponControllers[2] != null)
                 {
-                    WeaponController weapon = gameController.playerController.weaponControllers[2];
+                    LaserGun weapon = gameController.playerController.weaponControllers[2] as LaserGun;
+                    if (gameController.playerController.currentWeapon == 2)
+                    {
+                        weaponLabel.text = weapon.name;
+                        if (weapon.curCooldown <= 0)
+                        {
+                            weaponVisibleValue.fillAmount = weapon.prepareTime / weapon.maxPrepareTime;
+                        }
+                        else
+                        {
+                            weaponVisibleValue.fillAmount = weapon.curCooldown / weapon.maxPrepareTime;
+                        }
+                    }
                     laserGun.DrawAmount(weapon.amount);
                     laserGun.DrawCooldowm(weapon.curCooldown, weapon.cooldown);
                     laserGun.selection.gameObject.SetActive(gameController.playerController.currentWeapon == 2);

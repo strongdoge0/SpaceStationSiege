@@ -18,7 +18,7 @@ public class RocketLauncher : WeaponController
         _curCooldown = cooldown;
         if (amount - 1 >= 0)
         {
-            amount--;
+            _curAmount--;
 
             Vector3 currentRocketSpawnPoint = _useRightRocketSpawn ? rightRocketSpawnTransform.position : leftRocketSpawnTransform.position;
 

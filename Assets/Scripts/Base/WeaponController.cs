@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public int amount = 0;
+    public new string name = "Weapon";
+    public int maxAmount = 0;
+    protected int _curAmount = 0;
+    public int amount { get { return _curAmount; } }
     public float cooldown = 2.0f;
     protected float _curCooldown;
     public float curCooldown { get { return _curCooldown; } }
@@ -17,12 +20,13 @@ public class WeaponController : MonoBehaviour
         _curCooldown = cooldown;
         if (amount - 1 >= 0)
         {
-            amount--;
+            _curAmount--;
         }
     }
 
     public void Initialize()
     {
+        _curAmount = maxAmount;
         _curCooldown = cooldown;
     }
 
@@ -31,6 +35,7 @@ public class WeaponController : MonoBehaviour
         if (curCooldown > 0)
         {
             _curCooldown -= Time.deltaTime;
+            _curCooldown = Mathf.Clamp(_curCooldown, 0, cooldown);
         }
     }
 }

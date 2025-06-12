@@ -17,9 +17,9 @@ public class PlasmaGun : WeaponController
 
     public override void Shot()
     {
-        amount--;
-        Vector3 offset = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-        Debug.Log(offset);
+        _curAmount--;
+        Vector3 offset = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0);
+        //Debug.Log(offset);
         BulletTraceController bulletTrace = GameObject.Instantiate(bulletTracePrefab, transform.position , transform.rotation).GetComponent<BulletTraceController>();
         CameraController cameraController = Camera.main.GetComponent<CameraController>();
 
