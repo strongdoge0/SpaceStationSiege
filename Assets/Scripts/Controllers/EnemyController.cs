@@ -17,6 +17,9 @@ public class EnemyController : Unit
 
     public AudioSource audioSource;
 
+    public WeaponController weaponController;
+    private float _normalCooldown;
+
     void ChangeTargetHeight()
     {
         _targetHeight = Random.Range(-150, 150);
@@ -65,11 +68,19 @@ public class EnemyController : Unit
         _currentHeight = _targetHeight;
         Invoke("ChangeTargetHeight", 60 * Random.Range(0, 1));
         _prevPos = transform.position;
+        _normalCooldown = weaponController.cooldown;
+        weaponController.cooldown = Random.Range(0, _normalCooldown * 2);
     }
 
     void Update()
     {
         if (curHealth <= 0) return;
+
+        if (weaponController.curCooldown <= 0)
+        {
+            weaponController.Shot();
+            weaponController.cooldown = Random.Range(_normalCooldown / 2, _normalCooldown * 2);
+        }
 
         _currentAngle += _angularSpeed * Time.deltaTime;
 

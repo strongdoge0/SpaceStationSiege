@@ -30,8 +30,35 @@ public class GameController : MonoBehaviour
     public float musicVolume = 1;
     public float effectsVolume = 1;
     public float interfaceVolume = 1;
-    public float playerDamageMultiplier = 1;
-    public float enemyDamageMultiplier = 1;
+    public float playerDamageMultiplier
+    {
+        get
+        {
+            if (gameDifficulty == 0)
+            {
+                return 1.25f;
+            }
+            else if (gameDifficulty == 2)
+            {
+                return 0.75f;
+            }
+            return 1;
+        }
+    }
+    public float enemyDamageMultiplier{
+        get
+        {
+            if (gameDifficulty == 0)
+            {
+                return 0.75f;
+            }
+            else if (gameDifficulty == 2)
+            {
+                return 1.25f;
+            }
+            return 1;
+        }
+    }
 
     public bool isPaused
     {
@@ -240,6 +267,7 @@ public class GameController : MonoBehaviour
 
         scene.gameObject.SetActive(true);
         uIController.ShowGameUI();
+        CheckEnemiesCount();
     }
 
     public void InitializeWorld()
@@ -329,6 +357,7 @@ public class GameController : MonoBehaviour
     public void CheckEnemiesCount()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        uIController.DrawEnemyCount(enemies.Length);
         //Debug.Log("CheckEnemiesCount " + enemies.Length);
         if (enemies.Length == 0)
         {

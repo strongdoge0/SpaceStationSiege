@@ -32,6 +32,9 @@ public class PlayerController : Unit
     public WeaponController[] weaponControllers = new WeaponController[3];
     public int currentWeapon = 1;
 
+    public float scrollWheelDelayTime = 0.2f;
+    private float _scrollWheelTime = 0;
+
     void Start()
     {
         //_unit = GetComponent<Unit>();
@@ -41,6 +44,7 @@ public class PlayerController : Unit
     public override void OnTakeDamage(int damage)
     {
         GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>().score -= damage;
+        Debug.Log("OnTakeDamage " + damage);
     }
 
     public override void Die()
@@ -63,7 +67,16 @@ public class PlayerController : Unit
 
     void SelectWeapon(int weaponIndex)
     {
-        currentWeapon = Mathf.Clamp(currentWeapon, 0, weaponControllers.Length - 1);
+        //currentWeapon = Mathf.Clamp(currentWeapon, 0, weaponControllers.Length - 1);
+
+        if (currentWeapon < 0)
+        {
+            currentWeapon = weaponControllers.Length - 1;
+        }
+        else if (currentWeapon > weaponControllers.Length - 1)
+        {
+            currentWeapon = 0;
+        }
 
         for (int i = 0; i < weaponControllers.Length; i++)
         {
@@ -83,17 +96,25 @@ public class PlayerController : Unit
         //if (_unit.curHealth <= 0) return;
         if (curHealth <= 0) return;
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        if (_scrollWheelTime > 0)
         {
-            currentWeapon++;
-            SelectWeapon(currentWeapon);
+            _scrollWheelTime -= Time.deltaTime;
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        else
         {
-            currentWeapon--;
-            SelectWeapon(currentWeapon);
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                _scrollWheelTime = scrollWheelDelayTime;
+                currentWeapon++;
+                SelectWeapon(currentWeapon);
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                _scrollWheelTime = scrollWheelDelayTime;
+                currentWeapon--;
+                SelectWeapon(currentWeapon);
+            }
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentWeapon = 0;

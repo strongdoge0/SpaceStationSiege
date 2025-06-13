@@ -10,7 +10,11 @@ public class RocketController : MonoBehaviour
     public int damage = 30;
     private float _curTime = 0;
 
+    public Unit ignoreUnit = null;
+
     private Vector3 _prevPos;
+
+    public float minActivationDistance = 0.5f;
 
     public GameObject explosionPrefab;
     public AudioSource audioSource;
@@ -25,6 +29,11 @@ public class RocketController : MonoBehaviour
         Unit unit = collision.gameObject.GetComponent<Unit>();
         if (unit)
         {
+
+            if (ignoreUnit == unit) {
+                return;
+            }
+            
             unit.TakeDamage(damage);
             DestroyRocket();
         }
@@ -54,6 +63,10 @@ public class RocketController : MonoBehaviour
         if (_target != null)
         {
             transform.position = Vector3.MoveTowards(transform.position, _target.position, _currentSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, _target.position) < minActivationDistance) {
+                DestroyRocket();
+            }
 
             Vector3 direction = (transform.position - _prevPos).normalized;
             if (direction != Vector3.zero)

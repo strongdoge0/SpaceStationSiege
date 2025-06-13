@@ -32,6 +32,9 @@ public class UIController : MonoBehaviour
     public TMP_Text distanceValueLabel;
 
     public TMP_Text speedValueLabel;
+    
+    public TMP_Text enemyCountLabel;
+    public Image stationFillHealthbar;
 
     public Image playerFillHealthbar;
     public WeaponStatusBar rocketLauncher;
@@ -100,8 +103,13 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void DrawPlayerStatusBar(Unit target)
+    public void DrawPlayerStatusBar()
     {
+        if (gameController.stationUnit != null)
+        {
+            stationFillHealthbar.fillAmount = (float)gameController.stationUnit.curHealth / (float)gameController.stationUnit.maxHealth;
+        }
+        Unit target = gameController.playerController;
         if (target != null)
         {
             playerFillHealthbar.fillAmount = (float)target.curHealth / (float)target.maxHealth;
@@ -159,6 +167,11 @@ public class UIController : MonoBehaviour
         {
             playerFillHealthbar.fillAmount = 0;
         }
+    }
+
+    public void DrawEnemyCount(int cout)
+    {
+        enemyCountLabel.text = cout.ToString();
     }
 
     public void ShowMainMenu()
@@ -237,7 +250,7 @@ public class UIController : MonoBehaviour
     public void OnGameSettingsApplyButton()
     {
         gameController.gameDifficulty = difficultyDropdown.value;
-        gameController.playerDamageMultiplier = 1.25f;
+        /*gameController.playerDamageMultiplier = 1.25f;
         if (difficultyDropdown.value == 1)
         {
             gameController.playerDamageMultiplier = 1;
@@ -245,7 +258,7 @@ public class UIController : MonoBehaviour
         else if (difficultyDropdown.value == 2)
         {
             gameController.playerDamageMultiplier = 0.75f;
-        }
+        }*/
         gameController.musicVolume = musicVolumeSlider.value;
         gameController.effectsVolume = effectsVolumeSlider.value;
         gameController.interfaceVolume = interfaceVolumeSlider.value;
@@ -260,7 +273,7 @@ public class UIController : MonoBehaviour
     public void OnNewGameButton()
     {
         gameController.gameDifficulty = newGameDifficultyDropdown.value;
-        gameController.playerDamageMultiplier = 1.25f;
+        /*gameController.playerDamageMultiplier = 1.25f;
         if (newGameDifficultyDropdown.value == 1)
         {
             gameController.playerDamageMultiplier = 1;
@@ -268,7 +281,7 @@ public class UIController : MonoBehaviour
         else if (newGameDifficultyDropdown.value == 2)
         {
             gameController.playerDamageMultiplier = 0.75f;
-        }
+        }*/
         gameController.SaveGameSettings();
         ShowGameUI();
         gameController.StartGame(newGameWorldSizeDropdown.value);

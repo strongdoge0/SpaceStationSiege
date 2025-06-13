@@ -82,12 +82,12 @@ public class CameraController : MonoBehaviour
             }
             Camera.main.fieldOfView = _currentFOV;
 
-            gameController.uIController.DrawPlayerStatusBar(_target.GetComponent<Unit>());
+            gameController.uIController.DrawPlayerStatusBar();
         }
         else
         {
             _currentFOV = normalFOV;
-            gameController.uIController.DrawPlayerStatusBar(null);
+            gameController.uIController.DrawPlayerStatusBar();
         }
     }
 }
