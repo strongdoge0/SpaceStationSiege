@@ -21,7 +21,7 @@ public class EnemyRocketLauncher : WeaponController
         }
         _curCooldown = cooldown;
 
-        RocketController rocket = GameObject.Instantiate(rocketPrefab, rocketSpawnTransform.position, transform.rotation).GetComponent<RocketController>();
+        RocketController rocket = GameObject.Instantiate(rocketPrefab, rocketSpawnTransform.position, transform.rotation, gameController.scene).GetComponent<RocketController>();
         rocket.damage = (int)((float)rocket.damage * gameController.enemyDamageMultiplier);
         rocket.ignoreUnit = ignoreUnit;
         Transform target;

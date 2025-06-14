@@ -82,7 +82,7 @@ public class GameController : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void GenerateScene(int minSize, int maxSize, int meteorCount, int omegaCount, int betaCount, int alphaCount)
+    public void GenerateScene(int minSize, int maxSize, int meteorCount, int maxMeteorSize, int omegaCount, int betaCount, int alphaCount)
     {
         List<Transform> units = new List<Transform>();
 
@@ -198,7 +198,7 @@ public class GameController : MonoBehaviour
                     if (isValidPos)
                     {
                         Unit meteor = GameObject.Instantiate(meteorPrefab, position, Random.rotation, scene).GetComponent<Unit>();
-                        int size = Random.Range(10, 100);
+                        int size = Random.Range(10, maxMeteorSize);
                         meteor.maxHealth = size;
                         meteor.curHealth = size;
 
@@ -217,7 +217,7 @@ public class GameController : MonoBehaviour
         Cursor.visible = false;
 
         stationUnit = GameObject.Instantiate(stationPrefab, new Vector3(), Quaternion.identity, scene).GetComponent<Unit>();
-        stationUnit.curHealth = stationUnit.maxHealth;
+        
         playerController = GameObject.Instantiate(playerPrefab, playerSpawnPoint, Quaternion.identity, scene).GetComponent<PlayerController>();
         playerController.cameraController = cameraController;
         cameraController.InitializeTarget(playerController);
@@ -248,16 +248,31 @@ public class GameController : MonoBehaviour
             alphaCount = 4;
         }
 
-        int size = 75;
+        int size = 150;
+        stationUnit.maxHealth = 300;
         if (worldSize == 1)
         {
-            size = 150;
+            size = 250;
+            stationUnit.maxHealth = 400;
         }
         else if (worldSize == 2)
         {
-            size = 300;
+            size = 350;
+            stationUnit.maxHealth = 500;
         }
-        GenerateScene(-size, size, meteorCount, omegaCount, betaCount, alphaCount);
+        
+        stationUnit.curHealth = stationUnit.maxHealth;
+        
+        int maxMeteorSize = 50;
+        if (worldSize == 1)
+        {
+            maxMeteorSize = 75;
+        }
+        else if (worldSize == 2)
+        {
+            maxMeteorSize = 300;
+        }
+        GenerateScene(-size, size, meteorCount, maxMeteorSize, omegaCount, betaCount, alphaCount);
 
 
         isPlaying = true;
